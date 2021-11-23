@@ -2,7 +2,7 @@ import pygame
 
 from sprite import Sprite
 
-class Board:
+class Selector:
     def __init__(self, game, start_x, start_y, tile_x, tile_y):
         self.game = game
 
@@ -12,22 +12,27 @@ class Board:
         self.pos = pygame.Vector2(start_x, start_y)
         self.size = pygame.Vector2(tile_x, tile_y)
         self.grid = [ [Sprite(self, self.game.units_texture) for _ in range(tile_x)] for _ in range(tile_y)]
-        self.window_size = self.cell_size.elementwise() * self.size
+        self.window_size = self.size.elementwise() * self.cell_size
 
-    def addSprite(self, pos_x, pos_y):
+    def updateSprite(self, sprites):
+        x, y = 0, 0
+        for data in sprites:
+            self.grid[y][x].update(data[0], data[1])
+            print(x, y)
+
+            x += 1
+            if x >= self.size.x:
+                x = 0
+                y += 1
+
+            if y >= self.size.y:
+                break
+
+    def selectSprite(self, pos_x, pos_y):
         x = int((pos_x - self.pos.x) / self.cell_size.x)
         y = int((pos_y - self.pos.y) / self.cell_size.y)
 
-        if self.grid[y][x].filled and self.grid[y][x].pos == self.game.selection:
-            self.grid[y][x].visible = True
-        else:
-            self.grid[y][x].update(*self.game.selection)
-
-    def removeSprite(self, pos_x, pos_y):
-        x = int((pos_x - self.pos.x) / self.cell_size.x)
-        y = int((pos_y - self.pos.y) / self.cell_size.y)
-
-        self.grid[y][x].visible = False
+        self.game.selection = self.grid[y][x].pos
 
     def draw(self):
         for x in range(int(self.size.x)):
