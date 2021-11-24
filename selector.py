@@ -8,6 +8,7 @@ class Selector:
 
         self.cell_size = pygame.Vector2(64, 64)
         self.units_texture = self.game.units_texture
+        self.sprites = []
 
         self.pos = pygame.Vector2(start_x, start_y)
         self.size = pygame.Vector2(tile_x, tile_y)
@@ -15,9 +16,11 @@ class Selector:
         self.window_size = self.size.elementwise() * self.cell_size
 
     def updateSprite(self, sprites):
+        self.sprites = sprites
+
         x, y = 0, 0
         for data in sprites:
-            self.grid[y][x].update(data[0], data[1])
+            self.grid[y][x].update(*data["pos"], data["text"])
             print(x, y)
 
             x += 1
@@ -33,6 +36,7 @@ class Selector:
         y = int((pos_y - self.pos.y) / self.cell_size.y)
 
         self.game.selection = self.grid[y][x].pos
+        self.game.info.msg = self.grid[y][x].msg
 
     def draw(self):
         for x in range(int(self.size.x)):

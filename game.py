@@ -1,7 +1,10 @@
 import pygame
 
+import json
+
 from board import Board
 from selector import Selector
+from info import Info
 
 class Game:
     def __init__(self):
@@ -9,11 +12,21 @@ class Game:
         self.screen = pygame.display.set_mode(self.screen_res)
 
         self.units_texture = pygame.image.load("units.png")
-        self.sprites = [(1, 0), (0, 6), (0, 8), (0, 9), (0, 10), (0, 11), (0, 12), (0, 13)]
-        self.selection = self.sprites[0]
+        self.sprites = []
+
+        data = open("data.json", "r")
+        self.data = json.load(data)
+        data.close()
+
+        for i in self.data:
+            self.sprites.append(self.data[i])
+
+        self.selection = self.sprites[0]["pos"]
 
         self.board = Board(self, 10, 10, 8, 8)
         self.selector = Selector(self, 600, 10, 2, 4)
+        self.info = Info(self, 800, 10, 450, 400)
+
         self.selector.updateSprite(self.sprites)
 
         self.running = True
@@ -56,6 +69,7 @@ class Game:
         self.screen.fill((0, 0, 0))
         self.board.draw()
         self.selector.draw()
+        self.info.draw()
 
         pygame.display.update()
 

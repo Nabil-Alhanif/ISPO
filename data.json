@@ -1,0 +1,34 @@
+{
+    "Object-1":{
+        "pos":[1, 0],
+        "text":"This is object number 1"
+    },
+    "Object-2":{
+        "pos":[0, 6],
+        "text":"This is object number 2"
+    },
+    "Object-3":{
+        "pos":[0, 8],
+        "text":"This is object number 3"
+    },
+    "Object-4":{
+        "pos":[0, 9],
+        "text":"This is object number 4"
+    },
+    "Object-5":{
+        "pos":[0, 10],
+        "text":"This is object number 5"
+    },
+    "Object-6":{
+        "pos":[0, 11],
+        "text":"This is object number 6"
+    },
+    "Object-7":{
+        "pos":[0, 12],
+        "text":"This is object number 7"
+    },
+    "Object-8":{
+        "pos":[0, 13],
+        "text":"This is object number 8"
+    }
+}
