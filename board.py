@@ -51,7 +51,6 @@ class Board:
                         (self.pos.x + self.window_size.x - 1, self.pos.y + cell_pos.y + self.cell_size.y - 1)
                         )
 
-                sprite = self.grid[y][x]
                 position = pygame.Vector2(x, y).elementwise() * self.cell_size
                 position = position.elementwise() + self.pos
-                self.game.screen.blit(sprite.texture, position, sprite.texture_rect)
+                self.grid[y][x].draw(self.game.screen, position)

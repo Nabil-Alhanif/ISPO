@@ -36,13 +36,6 @@ class Sprite:
         self.data[data["name"]] = data
         self.last_data = data
 
-        pos_x, pos_y = data["pos"]
-
-        texture_pos = pygame.Vector2(pos_x, pos_y).elementwise() * self.cell_size
-        print(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
-
-        self.texture_rect = pygame.Rect(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
-
     def remove(self, delete_source = False):
 
         key = self.id[-1]
@@ -69,9 +62,14 @@ class Sprite:
 
         key = self.id[-1]
         self.last_data = self.data[key]
-        pos_x, pos_y = self.last_data["pos"]
 
-        texture_pos = pygame.Vector2(pos_x, pos_y).elementwise() * self.cell_size
-        print(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
+    def draw(self, screen, position):
+        for key in self.id:
+            pos_x, pos_y = self.data[key]["pos"]
 
-        self.texture_rect = pygame.Rect(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
+            texture_pos = pygame.Vector2(pos_x, pos_y).elementwise() * self.cell_size
+            #print(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
+
+            texture_rect = pygame.Rect(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
+
+            screen.blit(self.texture, position, texture_rect)
