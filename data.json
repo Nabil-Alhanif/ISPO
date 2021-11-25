@@ -1,34 +1,62 @@
 {
-    "Object-1":{
+    "extractor-up":{
+        "type":"float",
+        "pos":[5, 0],
+        "name":"extractor-up",
+        "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow"
+    },
+    "extractor-down":{
+        "type":"float",
+        "pos":[6, 0],
+        "name":"extractor-down",
+        "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow"
+    },
+    "extractor-right":{
+        "type":"float",
+        "pos":[7, 0],
+        "name":"extractor-right",
+        "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow"
+    },
+    "extractor-left":{
+        "type":"float",
+        "pos":[8, 0],
+        "name":"extractor-left",
+        "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow"
+    },
+    "arrow-up":{
+        "type":"struct",
         "pos":[1, 0],
-        "text":"This is object number 1"
+        "name":"arrow-up",
+        "text":"This is an item conveyor. It will bring an item in the direction of the arrow"
     },
-    "Object-2":{
-        "pos":[0, 6],
-        "text":"This is object number 2"
+    "arrow-down":{
+        "type":"struct",
+        "pos":[2, 0],
+        "name":"arrow-down",
+        "text":"This is an item conveyor. It will bring an item in the direction of the arrow"
     },
-    "Object-3":{
-        "pos":[0, 8],
-        "text":"This is object number 3"
+    "arrow-right":{
+        "type":"struct",
+        "pos":[3, 0],
+        "name":"arrow-right",
+        "text":"This is an item conveyor. It will bring an item in the direction of the arrow"
     },
-    "Object-4":{
-        "pos":[0, 9],
-        "text":"This is object number 4"
+    "arrow-left":{
+        "type":"struct",
+        "pos":[4, 0],
+        "name":"arrow-left",
+        "text":"This is an item conveyor. It will bring an item in the direction of the arrow"
     },
-    "Object-5":{
-        "pos":[0, 10],
-        "text":"This is object number 5"
+    "water":{
+        "type":"source",
+        "pos":[1, 1],
+        "name":"water",
+        "text":"This is water. The chemical formula of water is H2O. Water is one of the most important stuff in nature, because all lifes requires water."
     },
-    "Object-6":{
-        "pos":[0, 11],
-        "text":"This is object number 6"
-    },
-    "Object-7":{
-        "pos":[0, 12],
-        "text":"This is object number 7"
-    },
-    "Object-8":{
-        "pos":[0, 13],
-        "text":"This is object number 8"
+    "atp":{
+        "type":"source",
+        "pos":[9, 0],
+        "name":"atp",
+        "text":"This is ATP (Adenosine Tri-Phosphate), which is the most common energy source for living things."
     }
 }

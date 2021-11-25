@@ -8,7 +8,7 @@ class Selector:
 
         self.cell_size = pygame.Vector2(64, 64)
         self.units_texture = self.game.units_texture
-        self.sprites = []
+        self.sprites = {}
 
         self.pos = pygame.Vector2(start_x, start_y)
         self.size = pygame.Vector2(tile_x, tile_y)
@@ -19,9 +19,12 @@ class Selector:
         self.sprites = sprites
 
         x, y = 0, 0
+        print("Seeding data")
         for data in sprites:
-            self.grid[y][x].update(*data["pos"], data["text"])
+            self.grid[y][x].update(self.sprites[data])
             print(x, y)
+
+            print(self.grid[y][x].data)
 
             x += 1
             if x >= self.size.x:
@@ -35,8 +38,8 @@ class Selector:
         x = int((pos_x - self.pos.x) / self.cell_size.x)
         y = int((pos_y - self.pos.y) / self.cell_size.y)
 
-        self.game.selection = self.grid[y][x].pos
-        self.game.info.msg = self.grid[y][x].msg
+        self.game.selection = self.grid[y][x].last_data
+        self.game.info.msg = self.grid[y][x].last_data["text"]
 
     def draw(self):
         for x in range(int(self.size.x)):
@@ -63,8 +66,7 @@ class Selector:
                         (self.pos.x + self.window_size.x - 1, self.pos.y + cell_pos.y + self.cell_size.y - 1)
                         )
 
-                if self.grid[y][x].visible:
-                    sprite = self.grid[y][x]
-                    position = pygame.Vector2(x, y).elementwise() * self.cell_size
-                    position = position.elementwise() + self.pos
-                    self.game.screen.blit(sprite.texture, position, sprite.texture_rect)
+                sprite = self.grid[y][x]
+                position = pygame.Vector2(x, y).elementwise() * self.cell_size
+                position = position.elementwise() + self.pos
+                self.game.screen.blit(sprite.texture, position, sprite.texture_rect)

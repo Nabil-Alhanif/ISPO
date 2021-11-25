@@ -11,23 +11,24 @@ class Game:
         self.screen_res = pygame.Vector2(1280, 720)
         self.screen = pygame.display.set_mode(self.screen_res)
 
-        self.units_texture = pygame.image.load("units.png")
-        self.sprites = []
+        self.units_texture = pygame.image.load("sprites.png")
 
         data = open("data.json", "r")
         self.data = json.load(data)
         data.close()
 
-        for i in self.data:
-            self.sprites.append(self.data[i])
-
-        self.selection = self.sprites[0]["pos"]
+        self.selection = {
+                "type":"base",
+                "pos":[0, 0],
+                "name":"base",
+                "text":""
+                }
 
         self.board = Board(self, 10, 10, 8, 8)
-        self.selector = Selector(self, 600, 10, 2, 4)
+        self.selector = Selector(self, 600, 10, 2, 8)
         self.info = Info(self, 800, 10, 450, 400)
 
-        self.selector.updateSprite(self.sprites)
+        self.selector.updateSprite(self.data)
 
         self.running = True
         self.clock = pygame.time.Clock()

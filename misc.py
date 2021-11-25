@@ -1,5 +1,3 @@
-import pygame
-
 textAlignLeft = 0
 textAlignRight = 1
 textAlignCenter = 2

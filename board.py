@@ -18,16 +18,13 @@ class Board:
         x = int((pos_x - self.pos.x) / self.cell_size.x)
         y = int((pos_y - self.pos.y) / self.cell_size.y)
 
-        if self.grid[y][x].filled and self.grid[y][x].pos == self.game.selection:
-            self.grid[y][x].visible = True
-        else:
-            self.grid[y][x].update(*self.game.selection)
+        self.grid[y][x].update(self.game.selection)
 
     def removeSprite(self, pos_x, pos_y):
         x = int((pos_x - self.pos.x) / self.cell_size.x)
         y = int((pos_y - self.pos.y) / self.cell_size.y)
 
-        self.grid[y][x].visible = False
+        self.grid[y][x].remove(self.grid[y][x].last_data["type"] == "source")
 
     def draw(self):
         for x in range(int(self.size.x)):
@@ -54,8 +51,7 @@ class Board:
                         (self.pos.x + self.window_size.x - 1, self.pos.y + cell_pos.y + self.cell_size.y - 1)
                         )
 
-                if self.grid[y][x].visible:
-                    sprite = self.grid[y][x]
-                    position = pygame.Vector2(x, y).elementwise() * self.cell_size
-                    position = position.elementwise() + self.pos
-                    self.game.screen.blit(sprite.texture, position, sprite.texture_rect)
+                sprite = self.grid[y][x]
+                position = pygame.Vector2(x, y).elementwise() * self.cell_size
+                position = position.elementwise() + self.pos
+                self.game.screen.blit(sprite.texture, position, sprite.texture_rect)

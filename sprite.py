@@ -7,19 +7,71 @@ class Sprite:
         self.texture_rect = pygame.Rect(0, 0, 0, 0)
 
         self.pos = pygame.Vector2(0, 0)
-        self.padding = board.pos
-        self.msg = ""
+        self.id = ["base"]
+        self.data = {
+                "base": {
+                    "type":"base",
+                    "pos":[0, 0],
+                    "name":"base",
+                    "text":""
+                    }
+                }
+        self.last_data = self.data["base"]
 
-        self.visible = False
-        self.filled = False
+    def update(self, data):
+        print(data)
 
-    def update(self, pos_x, pos_y, msg=""):
+        print("data type")
+        print(data["type"])
+        self.remove(data["type"] == "source")
+
+        # Make sure there is no duplicate
+        if self.last_data["name"] == data["name"]:
+            return
+
+        print("self.data")
+        print(self.data)
+
+        self.id.append(data["name"])
+        self.data[data["name"]] = data
+        self.last_data = data
+
+        pos_x, pos_y = data["pos"]
+
         texture_pos = pygame.Vector2(pos_x, pos_y).elementwise() * self.cell_size
         print(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
 
-        self.pos = pygame.Vector2(pos_x, pos_y)
-        self.msg = msg
+        self.texture_rect = pygame.Rect(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
+
+    def remove(self, delete_source = False):
+
+        key = self.id[-1]
+
+        # base must exist
+        if self.data[key]["type"] == "base":
+            return
+
+        if not delete_source and self.data[key]["type"] == "source":
+            return
+
+        while True:
+            print("deleting ", key, self.data[key])
+
+            self.id.pop()
+            del self.data[key]
+            key = self.id[-1]
+
+            if self.data[key]["type"] == "base":
+                break
+
+            if not delete_source and self.data[key]["type"] == "source":
+                break
+
+        key = self.id[-1]
+        self.last_data = self.data[key]
+        pos_x, pos_y = self.last_data["pos"]
+
+        texture_pos = pygame.Vector2(pos_x, pos_y).elementwise() * self.cell_size
+        print(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
 
         self.texture_rect = pygame.Rect(int(texture_pos.x), int(texture_pos.y), int(self.cell_size.x), int(self.cell_size.y))
-        self.filled = True
-        self.visible = True
