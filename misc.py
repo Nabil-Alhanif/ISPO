@@ -1,3 +1,5 @@
+import pygame
+
 textAlignLeft = 0
 textAlignRight = 1
 textAlignCenter = 2
@@ -52,3 +54,25 @@ def drawText(surface, text, color, rect, font, align=textAlignBlock, aa=False, b
         for text in listOfWords[drawWords:]: remainingText += text + " "
         return remainingText
     return ""
+
+def drawGrid(screen, color, pos, cell_pos, cell_size, window_size):
+    pygame.draw.line(
+            screen, color,
+            (pos.x + cell_pos.x, pos.y),
+            (pos.x + cell_pos.x, pos.y + window_size.y - 1)
+            )
+    pygame.draw.line(
+            screen, color,
+            (pos.x + cell_pos.x + cell_size.x - 1, pos.y),
+            (pos.x + cell_pos.x + cell_size.x - 1, pos.y + window_size.y - 1)
+            )
+    pygame.draw.line(
+            screen, color,
+            (pos.x, pos.y + cell_pos.y),
+            (pos.x + window_size.x - 1, pos.y + cell_pos.y)
+            )
+    pygame.draw.line(
+            screen, color,
+            (pos.x, pos.y + cell_pos.y + cell_size.y - 1),
+            (pos.x + window_size.x - 1, pos.y + cell_pos.y + cell_size.y - 1)
+            )

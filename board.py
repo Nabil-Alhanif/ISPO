@@ -1,4 +1,5 @@
 import pygame
+import misc
 
 from sprite import Sprite
 
@@ -30,26 +31,7 @@ class Board:
         for x in range(int(self.size.x)):
             for y in range(int(self.size.y)):
                 cell_pos = pygame.Vector2(x, y).elementwise() * self.cell_size
-                pygame.draw.line(
-                        self.game.screen, (255, 255, 255),
-                        (self.pos.x + cell_pos.x, self.pos.y),
-                        (self.pos.x + cell_pos.x, self.pos.y + self.window_size.y - 1)
-                        )
-                pygame.draw.line(
-                        self.game.screen, (255, 255, 255),
-                        (self.pos.x + cell_pos.x + self.cell_size.x - 1, self.pos.y),
-                        (self.pos.x + cell_pos.x + self.cell_size.x - 1, self.pos.y + self.window_size.y - 1)
-                        )
-                pygame.draw.line(
-                        self.game.screen, (255, 255, 255),
-                        (self.pos.x, self.pos.y + cell_pos.y),
-                        (self.pos.x + self.window_size.x - 1, self.pos.y + cell_pos.y)
-                        )
-                pygame.draw.line(
-                        self.game.screen, (255, 255, 255),
-                        (self.pos.x, self.pos.y + cell_pos.y + self.cell_size.y - 1),
-                        (self.pos.x + self.window_size.x - 1, self.pos.y + cell_pos.y + self.cell_size.y - 1)
-                        )
+                misc.drawGrid(self.game.screen, (255, 255, 255), self.pos, cell_pos, self.cell_size, self.window_size)
 
                 position = pygame.Vector2(x, y).elementwise() * self.cell_size
                 position = position.elementwise() + self.pos
