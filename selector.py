@@ -26,7 +26,7 @@ class Selector:
             if self.sprites[data]["selectable"] == "no":
                 continue
 
-            self.grid[y][x].update(self.sprites[data])
+            self.grid[y][x].update(self.sprites[data], True)
             print(x, y)
 
             print(self.grid[y][x].data)

@@ -1,5 +1,4 @@
 import pygame
-
 import json
 
 from board import Board
@@ -32,6 +31,7 @@ class Game:
 
         self.running = True
         self.clock = pygame.time.Clock()
+        self.last_tick = pygame.time.get_ticks()
 
     def eventLoop(self):
         for event in pygame.event.get():
@@ -64,7 +64,12 @@ class Game:
                                 self.board.removeSprite(x, y)
 
     def update(self):
-        pass
+        cur_time = pygame.time.get_ticks()
+        dif = cur_time - self.last_tick
+        if dif >= 1000:
+            self.last_tick = cur_time
+            print("Milliseconds since enter: ", cur_time)
+            self.board.update()
 
     def render(self):
         self.screen.fill((0, 0, 0))

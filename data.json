@@ -1,107 +1,122 @@
 {
     "base":{
-        "type":"float",
+        "type":"base",
         "pos":[0, 0],
         "name":"base",
         "text":"",
-        "selectable":"no"
+        "selectable":"no",
+        "output":"None"
     },
     "extractor-up":{
         "type":"float",
         "pos":[5, 0],
         "name":"extractor-up",
         "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "extractor-down":{
         "type":"float",
         "pos":[6, 0],
         "name":"extractor-down",
         "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "extractor-right":{
         "type":"float",
         "pos":[7, 0],
         "name":"extractor-right",
         "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "extractor-left":{
         "type":"float",
         "pos":[8, 0],
         "name":"extractor-left",
         "text":"This is an extractor. It extracts object underneath it and bring it in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "arrow-up":{
         "type":"struct",
         "pos":[1, 0],
         "name":"arrow-up",
         "text":"This is an item conveyor. It will bring an item in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "arrow-down":{
         "type":"struct",
         "pos":[2, 0],
         "name":"arrow-down",
         "text":"This is an item conveyor. It will bring an item in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "arrow-right":{
         "type":"struct",
         "pos":[3, 0],
         "name":"arrow-right",
         "text":"This is an item conveyor. It will bring an item in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "arrow-left":{
         "type":"struct",
         "pos":[4, 0],
         "name":"arrow-left",
         "text":"This is an item conveyor. It will bring an item in the direction of the arrow",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "water":{
         "type":"source",
         "pos":[1, 1],
         "name":"water",
         "text":"This is water. The chemical formula of water is H2O. Water is one of the most important stuff in nature, because all lifes requires water.",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"water_item"
     },
     "atp":{
         "type":"source",
         "pos":[9, 0],
         "name":"atp",
         "text":"This is ATP (Adenosine Tri-Phosphate), which is the most common energy source for living things.",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"atp_item"
     },
     "adp":{
         "type":"source",
         "pos":[0, 1],
         "name":"adp",
         "text":"This is ADP (Adenosine Di-Phosphate).",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "phosphate":{
         "type":"source",
         "pos":[2, 1],
         "name":"phosphate",
         "text":"This is phosphate",
-        "selectable":"yes"
+        "selectable":"yes",
+        "output":"None"
     },
     "water_item":{
         "type":"item",
         "pos":[3, 1],
         "name":"water_item",
         "text":"This is water. The chemical formula of water is H2O. Water is one of the most important stuff in nature, because all lifes requires water.",
-        "selectable":"no"
+        "selectable":"no",
+        "output":"None"
     },
     "atp_item":{
         "type":"item",
         "pos":[4, 1],
         "name":"atp_item",
         "text":"This is ATP (Adenosine Tri-Phosphate), which is the most common energy source for living things.",
-        "selectable":"no"
+        "selectable":"no",
+        "output":"None"
     }
 }

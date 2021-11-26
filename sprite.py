@@ -18,16 +18,26 @@ class Sprite:
                 }
         self.last_data = self.data["base"]
 
-    def update(self, data):
+        self.has_source = False
+
+    def update(self, data, force_float = False):
         print(data)
 
         print("data type")
         print(data["type"])
+
+        # Float item can only be placed on top of source
+        if data["type"] == "float" and not self.has_source and not force_float:
+            return
+
         self.remove(data["type"] == "source")
 
         # Make sure there is no duplicate
         if self.last_data["name"] == data["name"]:
             return
+
+        if data["type"] == "source":
+            self.has_source = True
 
         print("self.data")
         print(self.data)
@@ -46,6 +56,9 @@ class Sprite:
 
         if not delete_source and self.data[key]["type"] == "source":
             return
+
+        if delete_source:
+            self.has_source = False
 
         while True:
             print("deleting ", key, self.data[key])
